@@ -59,7 +59,7 @@ Using the Portal, add an identity provider:
 - Token store: No
 - Allowed token audiences: `api://{application_id}`
 
-## Deploy the web api to Azure
+## Deploy the Web API to Azure
 
 Enter the application directory:
 
