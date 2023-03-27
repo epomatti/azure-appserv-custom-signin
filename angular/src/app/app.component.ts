@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { PublicClientApplication, Configuration } from "@azure/msal-browser";
 import { environment } from '../environments/environment';
 
@@ -11,16 +11,18 @@ const MSAL_CONFIG: Configuration = {
 };
 
 const loginRequest = {
-  scopes: ["User.Read"]
+  scopes: [`api://${environment.AZUREAD_CLIENT_ID}/user_impersonation`]
 };
 
-// const APPSERV_ENDPOINT = "http://localhost:5291"
 const APPSERV_ENDPOINT = environment.APPSERV_ENDPOINT_URL
 
 const clientapp = new PublicClientApplication(MSAL_CONFIG);
 
-type Response = {
-  value?: string
+type AppServiceAuthResponse = {
+  authenticationToken?: string,
+  user?: {
+    userId?: string;
+  }
 };
 
 @Component({
@@ -31,8 +33,10 @@ type Response = {
 export class AppComponent {
   title = 'appservng';
 
-  response!: Response;
-  accessToken = "";
+  appServiceAuthResponse!: AppServiceAuthResponse;
+  accessToken?: string = "";
+  appServAuthorizationToken?: string = "";
+  protectedData?: string = ""
 
   constructor(
     private http: HttpClient
@@ -53,16 +57,17 @@ export class AppComponent {
   exchangeAccessToken() {
     const body = { "access_token": this.accessToken }
     this.http.post(`${APPSERV_ENDPOINT}/.auth/login/aad`, body)
-      .subscribe(response => {
-        console.log(response);
+      .subscribe(appServiceAuthResponse => {
+        this.appServiceAuthResponse = appServiceAuthResponse;
+        this.appServAuthorizationToken = this.appServiceAuthResponse.authenticationToken;
       });
   }
 
   callProtectedApi() {
-    this.http.get(`${APPSERV_ENDPOINT}/api/protected`)
+    const headers = new HttpHeaders().set("X-ZUMO-AUTH", this.appServAuthorizationToken!)
+    this.http.get(`${APPSERV_ENDPOINT}/api/protected`, { headers: headers })
       .subscribe(response => {
-        console.log(response);
-        this.response = response;
+        this.protectedData = response.toString();
       });
   }
 

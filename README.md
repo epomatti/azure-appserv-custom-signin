@@ -38,7 +38,7 @@ az webapp config appsettings set -g rgapp -n appcustomsignin789 --settings \
 Set up CORS:
 
 ```sh
-az webapp cors add -g rgapp -n appcustomsignin789 --allowed-origins "http://localhost:4200"
+az webapp cors add -g rgapp -n appcustomsignin789 --allowed-origins "*"
 ```
 
 Restart the app:
@@ -57,6 +57,7 @@ Using the Portal, add an identity provider:
 - Restrict access: Require
 - Unauthenticated requests: HTTP 401
 - Token store: No
+- Allowed token audiences: `api://{application_id}`
 
 ➡️ Make sure that the issuer URL is the new one `https://login.microsoftonline.com/{TENANT_ID}`
 

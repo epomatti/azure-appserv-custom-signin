@@ -1,15 +1,19 @@
 using Microsoft.Identity.Web;
+using Microsoft.IdentityModel.Logging;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 // JwtSecurityTokenHandler.DefaultMapInboundClaims = false;
 
+// For development purposes only
+IdentityModelEventSource.ShowPII = true;
+
 builder.Services.AddAuthentication().AddAppServicesAuthentication();
 
 builder.Services.AddCors(options =>
 {
-  options.AddPolicy("all",
+  options.AddPolicy("default",
       builder => builder.AllowAnyOrigin()
       .AllowAnyMethod()
       .AllowAnyHeader());
@@ -29,7 +33,7 @@ if (app.Environment.IsDevelopment())
   app.UseSwaggerUI();
 }
 
-app.UseCors("all");
+app.UseCors("default");
 
 app.UseHttpsRedirection();
 

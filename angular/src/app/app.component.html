@@ -2,7 +2,8 @@
 
   <div>
     <h3>1 - Login</h3>
-    Authenticate to Azure AD: <button (click)="login()">Login</button>
+    <p>Authenticate to Azure AD: </p>
+    <button (click)="login()">Login</button>
     <p>
       <textarea readonly placeholder="The OAuth access_token will be printed here" rows="3"
         cols="50">{{ accessToken }}</textarea>
@@ -11,16 +12,22 @@
 
   <div>
     <h3>2 - Exchange the token</h3>
-    Exchange the access_token by an App Service token: <button (click)="exchangeAccessToken()">Exchange Token</button>
+    <p>Exchange the access_token by an App Service token: </p>
+    <button (click)="exchangeAccessToken()">Exchange
+      Token</button>
     <p>
-      <textarea readonly placeholder="The App Service .auth response displayed here" rows="3"
-        cols="50">{{ accessToken }}</textarea>
+      <textarea readonly placeholder="The App Service .auth authorization token will be displayed here" rows="3"
+        cols="50">{{ appServAuthorizationToken }}</textarea>
     </p>
   </div>
 
   <div>
     <h3>3 - Call the Web API running in App Service</h3>
     <button (click)="callProtectedApi()">Get Protected Data</button>
+    <p>
+      <textarea readonly placeholder="Protected data received from yor API" rows="3"
+        cols="50">{{ protectedData }}</textarea>
+    </p>
   </div>
 
 </div>
