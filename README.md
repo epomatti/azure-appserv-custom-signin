@@ -83,6 +83,7 @@ To run the Angular client locally, create the `angular\src\environments\environm
 
 ```ts
 export const environment = {
+  production: false,
   APPSERV_ENDPOINT_URL: "https://appcustomsignin789.azurewebsites.net",
   AZUREAD_CLIENT_ID: "{CLIENT_ID}",
   AZUREAD_TENANT_ID: "{TENANT_ID}"
