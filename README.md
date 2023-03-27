@@ -67,7 +67,7 @@ Using the Portal, add an identity provider:
 Enter the application directory:
 
 ```sh
-cd api
+cd webapi
 ```
 
 Build and deploy the webapi to App Services:
