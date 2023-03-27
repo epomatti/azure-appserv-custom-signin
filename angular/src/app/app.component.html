@@ -4,14 +4,18 @@
     <h3>1 - Login</h3>
     Authenticate to Azure AD: <button (click)="login()">Login</button>
     <p>
-      <textarea readonly placeholder="The OAuth access_token will be printed here" rows="4"
-        cols="100">{{ accessToken }}</textarea>
+      <textarea readonly placeholder="The OAuth access_token will be printed here" rows="3"
+        cols="50">{{ accessToken }}</textarea>
     </p>
   </div>
 
   <div>
     <h3>2 - Exchange the token</h3>
-    Exchang the access_token by an App Service token: <button (click)="exchangeAccessToken()">Exchange Token</button>
+    Exchange the access_token by an App Service token: <button (click)="exchangeAccessToken()">Exchange Token</button>
+    <p>
+      <textarea readonly placeholder="The App Service .auth response displayed here" rows="3"
+        cols="50">{{ accessToken }}</textarea>
+    </p>
   </div>
 
   <div>
