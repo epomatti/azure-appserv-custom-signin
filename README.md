@@ -4,7 +4,7 @@ Implementation of [Customized sign-in/sign-out](https://learn.microsoft.com/en-u
 
 <img src=".docs/auth.png" width=750 />
 
-## 1- Create the infrastructure
+## 1 - Create the infrastructure
 
 Create an app registration and a user:
 
@@ -47,7 +47,7 @@ Restart the app:
 az webapp restart -g rgapp -n appcustomsignin789
 ```
 
-## 2- Add Authentication to App Services
+## 2 - Add Authentication to App Services
 
 Using the Portal, add an identity provider:
 
