@@ -32,7 +32,6 @@ Add the required app settings (environment variables):
 
 ```sh
 az webapp config appsettings set -g rgapp -n appcustomsignin789 --settings \
-        AzureAd__Domain="<DOMAIN>" \
         AzureAd__ClientId="<CLIENT_ID>" \
         AzureAd__TenantId="<TENANT_ID>" \
         WEBSITE_RUN_FROM_PACKAGE=1
