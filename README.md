@@ -4,7 +4,7 @@ Implementation of [Customized sign-in/sign-out](https://learn.microsoft.com/en-u
 
 
 
-## Create the infrastructure
+## 1- Create the infrastructure
 
 Create an app registration and a user:
 
@@ -50,7 +50,7 @@ Restart the app:
 az webapp restart -g rgapp -n appcustomsignin789
 ```
 
-## Add Authenticatino to AppServ
+## 2- Add Authenticatino to App Service
 
 Using the Portal, add an identity provider:
 
@@ -62,7 +62,7 @@ Using the Portal, add an identity provider:
 - Token store: No
 - Allowed token audiences: `api://{application_id}`
 
-## Deploy the Web API to Azure
+## 3 - Deploy the Web API to Azure
 
 Enter the application directory:
 
@@ -76,3 +76,27 @@ Build and deploy the webapi to App Services:
 bash build.sh
 az webapp deployment source config-zip -g rgapp -n appcustomsignin789 --src ./bin/webapi.zip
 ```
+
+## 4 - Call the APIs
+
+To run the Angular client locally, create the `angular\src\environments\environment.development.ts` file:
+
+```ts
+export const environment = {
+  APPSERV_ENDPOINT_URL: "https://appcustomsignin789.azurewebsites.net",
+  AZUREAD_CLIENT_ID: "{CLIENT_ID}",
+  AZUREAD_TENANT_ID: "{TENANT_ID}"
+};
+```
+
+Start the Angular app:
+
+```sh
+ng serve
+```
+
+The website should be available at http://localhost:4200
+
+---
+
+Destroy the Azure resources to avoid costs.
