@@ -59,8 +59,6 @@ Using the Portal, add an identity provider:
 - Token store: No
 - Allowed token audiences: `api://{application_id}`
 
-➡️ Make sure that the issuer URL is the new one `https://login.microsoftonline.com/{TENANT_ID}`
-
 ## Deploy the web api to Azure
 
 Enter the application directory:
