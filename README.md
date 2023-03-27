@@ -31,10 +31,8 @@ az webapp config set -g rgapp -n appcustomsignin789 --always-on true
 Add the required app settings (environment variables):
 
 ```sh
-az webapp config appsettings set -g rgapp -n appcustomsignin789 --settings \
-        AzureAd__ClientId="<CLIENT_ID>" \
-        AzureAd__TenantId="<TENANT_ID>" \
-        WEBSITE_RUN_FROM_PACKAGE=1
+az webapp config appsettings set -g rgapp -n appcustomsignin789 \
+        --settings WEBSITE_RUN_FROM_PACKAGE=1
 ```
 
 Set up CORS:
