@@ -2,7 +2,7 @@
 
 Implementation of [Customized sign-in/sign-out](https://learn.microsoft.com/en-us/azure/app-service/configure-authentication-customize-sign-in-out) using App Service Authentication.
 
-<img src=".docs/auth.png" width=650 />
+<img src=".docs/auth.png" width=700 />
 
 ## 1- Create the infrastructure
 
