@@ -16,8 +16,8 @@ az ad user create --display-name myuser --password password --user-principal-nam
 
 To the app registration:
 - Add SPA platform (do not select token generation) and set `http://localhost:4200` as the redirect URI 
-- Make sure you also set the Application ID URI, like in `api://<application_id>`
-- Create a scope named `api://<application_id>/user_impersonation`
+- Make sure you also set the Application ID URI, like in `api://{APPLICATION_ID}`
+- Create a scope named `api://{APPLICATION_ID}/user_impersonation`
 
 Create the infrastructure:
 
@@ -57,7 +57,7 @@ Using the Portal, add an identity provider:
 - Restrict access: Require
 - Unauthenticated requests: HTTP 401
 - Token store: No
-- Allowed token audiences: `api://{application_id}`
+- Allowed token audiences: `api://{APPLICATION_ID}`
 
 ## 3 - Deploy the Web API to Azure
 
@@ -82,7 +82,7 @@ To run the Angular client locally, create the `angular\src\environments\environm
 export const environment = {
   production: false,
   APPSERV_ENDPOINT_URL: "https://appcustomsignin789.azurewebsites.net",
-  AZUREAD_CLIENT_ID: "{CLIENT_ID}",
+  AZUREAD_CLIENT_ID: "{APPLICATION_ID}",
   AZUREAD_TENANT_ID: "{TENANT_ID}"
 };
 ```
