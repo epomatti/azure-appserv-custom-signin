@@ -1,5 +1,8 @@
-# azure-appserv-custom-signin
-App Service Client-directed sign-in
+# Azure AppServ custom sign-in
+
+Implementation of [Customized sign-in/sign-out](https://learn.microsoft.com/en-us/azure/app-service/configure-authentication-customize-sign-in-out) using App Service Authentication according.
+
+
 
 ## Create the infrastructure
 
