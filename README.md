@@ -50,7 +50,7 @@ Restart the app:
 az webapp restart -g rgapp -n appcustomsignin789
 ```
 
-## 2- Add Authenticatino to App Service
+## 2- Add Authentication to App Services
 
 Using the Portal, add an identity provider:
 
