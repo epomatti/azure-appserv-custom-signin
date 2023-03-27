@@ -1,9 +1,16 @@
-<style>
-
-</style>
-
 <div class="content" role="main">
 
-  <button (click)="callProtectedApi()" class="btn btn-primary btn-block btn-lg">Get Protected Data</button>
+  <div>
+    <button (click)="login()">Login</button>
+    <p>Access Token: {{ accessToken }}</p>
+  </div>
+
+  <div>
+    <button (click)="exchangeAccessToken()">Get Protected Data</button>
+  </div>
+
+  <div>
+    <button (click)="callProtectedApi()">Get Protected Data</button>
+  </div>
 
 </div>
