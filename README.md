@@ -4,6 +4,10 @@ Implementation of [Customized sign-in/sign-out](https://learn.microsoft.com/en-u
 
 <img src=".docs/auth.png" width=750 />
 
+Interface that executes the authentication flow:
+
+<img src=".docs/app.png" width=750 />
+
 ## 1 - Create the infrastructure
 
 Create the App Service resorces:
