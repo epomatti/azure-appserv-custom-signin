@@ -47,7 +47,7 @@ Using the Portal, add an identity provider:
 - Supported account types: Current / Single tenant
 - Restrict access: Require
 - Unauthenticated requests: HTTP 401
-- Token store: No
+- Token store: No (Uncheck the box)
 
 ➡️ Open the configuration and **change the Issuer URL** to the updated one:
 
