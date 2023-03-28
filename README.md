@@ -12,7 +12,7 @@ Interface that executes the authentication flow:
 
 Create the App Service resorces:
 
-```sh
+```
 az group create -n rgapp -l eastus
 az appservice plan create -g rgapp -n planapp --is-linux --sku B1
 az webapp create -g rgapp -p planapp -n appcustomsignin789 -r "DOTNETCORE:7.0" --https-only
@@ -21,20 +21,20 @@ az webapp config set -g rgapp -n appcustomsignin789 --always-on true
 
 Add the required app settings (environment variables):
 
-```sh
+```
 az webapp config appsettings set -g rgapp -n appcustomsignin789 \
         --settings WEBSITE_RUN_FROM_PACKAGE=1
 ```
 
 Set up CORS:
 
-```sh
+```
 az webapp cors add -g rgapp -n appcustomsignin789 --allowed-origins "*"
 ```
 
 Restart the app:
 
-```sh
+```
 az webapp restart -g rgapp -n appcustomsignin789
 ```
 
@@ -69,13 +69,13 @@ Do not select any token generation for the Authentication endpoint. This will tr
 
 Enter the application directory:
 
-```sh
+```
 cd webapi
 ```
 
 Build and deploy the webapi to App Services:
 
-```sh
+```
 bash build.sh
 az webapp deployment source config-zip -g rgapp -n appcustomsignin789 --src ./bin/webapi.zip
 ```
@@ -95,7 +95,7 @@ export const environment = {
 
 Start the Angular app:
 
-```sh
+```
 ng serve
 ```
 
