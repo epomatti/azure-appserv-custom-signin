@@ -3,7 +3,7 @@
   <div>
     <h3>1 - Login</h3>
     <p>Authenticate to Azure AD: </p>
-    <button (click)="login()">Login</button>
+    <button (click)="login()" mat-raised-button color="primary">Login</button>
     <p>
       <textarea readonly placeholder="The OAuth access_token will be printed here" rows="3"
         cols="50">{{ accessToken }}</textarea>
