@@ -4,22 +4,13 @@ Implementation of [Customized sign-in/sign-out](https://learn.microsoft.com/en-u
 
 <img src=".docs/auth.png" width=750 />
 
+Interface that executes the authentication flow:
+
+<img src=".docs/app.png" width=750 />
+
 ## 1 - Create the infrastructure
 
-Create an app registration and a user:
-
-```sh
-az ad app create --sign-in-audience AzureADMyOrg --display-name "appserv-custom-signin"
-az ad sp create --id <application_idd>
-az ad user create --display-name myuser --password password --user-principal-name myuser@contoso.com
-```
-
-To the app registration:
-- Add SPA platform (do not select token generation) and set `http://localhost:4200` as the redirect URI 
-- Make sure you also set the Application ID URI, like in `api://{APPLICATION_ID}`
-- Create a scope named `api://{APPLICATION_ID}/user_impersonation`
-
-Create the infrastructure:
+Create the App Service resorces:
 
 ```sh
 az group create -n rgapp -l eastus
@@ -52,14 +43,29 @@ az webapp restart -g rgapp -n appcustomsignin789
 Using the Portal, add an identity provider:
 
 - Identity Provider: Microsoft
-- App Registration Type: Pick existing
-- Issuer URL: `https://login.microsoftonline.com/{TENANT_ID}`
+- App Registration Type: Create new
+- Supported account types: Current / Single tenant
 - Restrict access: Require
 - Unauthenticated requests: HTTP 401
-- Token store: No
+- Token store: No (Uncheck the box)
+
+➡️ Open the configuration and **change the Issuer URL** to the updated one:
+
+- Issuer URL: `https://login.microsoftonline.com/{TENANT_ID}`
+
+Make sure the token audiences is configured:
+
 - Allowed token audiences: `api://{APPLICATION_ID}`
 
-## 3 - Deploy the Web API to Azure
+## 3 - Update the App Registration
+
+Delete the Web App platform.
+
+Create a new SPA platform with redirect URI `http://localhost:4200`.
+
+Do not select any token generation for the Authentication endpoint. This will trigger the app registration to use Auth Code Flow + PKCE.
+
+## 4 - Deploy the Web API to Azure
 
 Enter the application directory:
 
@@ -74,7 +80,7 @@ bash build.sh
 az webapp deployment source config-zip -g rgapp -n appcustomsignin789 --src ./bin/webapi.zip
 ```
 
-## 4 - Call the APIs
+## 5 - Call the APIs
 
 To run the Angular client locally, create the `angular\src\environments\environment.development.ts` file:
 
