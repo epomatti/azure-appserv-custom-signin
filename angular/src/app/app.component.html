@@ -6,44 +6,67 @@
     </mat-toolbar>
   </p>
 
-  <mat-card>
-    <mat-card-header>
-      <mat-card-title>1 - Login</mat-card-title>
-      <mat-card-subtitle>Authenticate with Azure AD to get an OAuth access token</mat-card-subtitle>
-    </mat-card-header>
-    <mat-card-content>
-      <p>
-        <textarea readonly placeholder="The OAuth access_token will be printed here" rows="3"
-          cols="50">{{ accessToken }}</textarea>
-      </p>
-      <button (click)="login()" mat-raised-button color="primary">Login</button>
-    </mat-card-content>
-  </mat-card>
-
-  <div>
-    <h3>1 - Login</h3>
-    <p>Authenticate to Azure AD: </p>
-
-  </div>
-
-  <div>
-    <h3>2 - Exchange the token</h3>
-    <p>Exchange the access_token by an App Service token: </p>
-    <button (click)="exchangeAccessToken()">Exchange
-      Token</button>
+  <div style="padding: 15px 25px 25px 25px;">
     <p>
-      <textarea readonly placeholder="The App Service .auth authorization token will be displayed here" rows="3"
-        cols="50">{{ appServAuthorizationToken }}</textarea>
+      <mat-card>
+        <p>
+          <mat-card-header>
+            <mat-card-title>1 - Get the OAuth token</mat-card-title>
+            <mat-card-subtitle>Authenticate with Azure AD to get an OAuth access token</mat-card-subtitle>
+          </mat-card-header>
+        </p>
+        <mat-card-content>
+          <p>
+            <mat-form-field style="width: 800px; font-size: small;">
+              <textarea matInput placeholder="The OAuth 'access_token' will be printed here"
+                readonly>{{ accessToken }}</textarea>
+            </mat-form-field>
+          </p>
+          <button (click)="login()" mat-raised-button color="primary">Login</button>
+        </mat-card-content>
+      </mat-card>
     </p>
-  </div>
 
-  <div>
-    <h3>3 - Call the Web API running in App Service</h3>
-    <button (click)="callProtectedApi()">Get Protected Data</button>
     <p>
-      <textarea readonly placeholder="Protected data received from yor API" rows="3"
-        cols="50">{{ protectedData }}</textarea>
+      <mat-card>
+        <p>
+          <mat-card-header>
+            <mat-card-title>2 - Exchange the token</mat-card-title>
+            <mat-card-subtitle>Exchange the OAuth token for an App Service token</mat-card-subtitle>
+          </mat-card-header>
+        </p>
+        <mat-card-content>
+          <p>
+            <mat-form-field style="width: 800px; font-size: small;">
+              <textarea matInput placeholder="The App Service .auth authorization token will be displayed here"
+                readonly>{{ appServAuthorizationToken }}</textarea>
+            </mat-form-field>
+          </p>
+          <button (click)="exchangeAccessToken()" mat-raised-button color="primary">Exchange Token</button>
+        </mat-card-content>
+      </mat-card>
     </p>
+
+    <p>
+      <mat-card>
+        <p>
+          <mat-card-header>
+            <mat-card-title>3 - Call the Web API running in App Service</mat-card-title>
+            <mat-card-subtitle>Use the App Service token to call a protected Web API</mat-card-subtitle>
+          </mat-card-header>
+        </p>
+        <mat-card-content>
+          <p>
+            <mat-form-field style="width: 800px; font-size: small;">
+              <textarea matInput placeholder="Protected data received from yor API"
+                readonly>{{ protectedData }}</textarea>
+            </mat-form-field>
+          </p>
+          <button (click)="callProtectedApi()" mat-raised-button color="primary">Call Web API</button>
+        </mat-card-content>
+      </mat-card>
+    </p>
+
   </div>
 
 </div>
