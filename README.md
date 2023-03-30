@@ -96,6 +96,7 @@ export const environment = {
 Start the Angular app:
 
 ```
+npm install
 ng serve
 ```
 
